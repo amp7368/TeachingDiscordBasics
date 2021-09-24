@@ -1,0 +1,34 @@
+// plugins that gradle uses
+plugins {
+    // the thing that lets us make shadow jars
+    id "com.github.johnrengelman.shadow" version "5.2.0"
+    id 'java'
+}
+
+// specifies information about our project name
+group 'mini.example'
+version '1.0-SNAPSHOT'
+
+
+// specifies dependency locations
+repositories {
+    mavenCentral()
+    maven {
+        name 'm2-dv8tion'
+        url 'https://m2.dv8tion.net/releases'
+    }
+}
+
+// specifies dependecies required
+dependencies {
+    // discord library to work with discord
+    implementation group: 'org.slf4j', name: 'slf4j-log4j12', version: '1.7.12'
+    implementation 'net.dv8tion:JDA:4.3.0_304'
+}
+shadowJar{
+    manifest {
+        attributes 'Main-Class': 'example.apple.discord.DiscordMain'
+    }
+}
+
+project.buildDir(System.getProperty("user.home")+"\\Desktop\\bots\\examples\\basic")
